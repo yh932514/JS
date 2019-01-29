@@ -2,18 +2,15 @@
 
 For example, in the document below, the alert should display "2" when Google anchor is clicked since it is the third anchor element in the document and its zero-based index is 2.*/
 
-registerHandlers();
-
 function registerHandlers() {
   var as = document.getElementsByTagName('a');
-  var links = new Array;
-  
   for (var i = 0; i < as.length; i++) {
- 	 links[i]=as[i].innerText;
-    as[i].onclick = function() {
-      alert(links.indexOf(this.innerText));
-      return false;
-    }
+    as[i].onclick = (function() {
+      var n=i;
+      return function(){
+      alert(n);
+      return false;}
+    })();
   }
 }
 
